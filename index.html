@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lesson 2</title>
+</head>
+<body>
+<script>
+    "use strict";
+    // задание 3.1
+    let a = [
+        [{name: 'Mary', age: 23}, {name: 'Mike', age: 45}, {name: 'Nick', age: 11}],
+        [{name: 'Adam', age: 56}, {name: 'Sara', age: 21}, {name: 'Don', age: 22}],
+        [{name: 'Karl', age: 34}, {name: 'Marta', age: 76}, {name: 'John', age: 19}]
+    ];
+    let b = [];
+    a .forEach(function (item, indexItem) {
+        b[indexItem] = [];
+        item.forEach(function (itemObj, indexItemObj) {
+            b[indexItem][indexItemObj] = Object.assign({},itemObj);
+        });
+    });
+    b[0][0].name = 'Jeka';
+    console.log(b);
+    console.log(a);
+
+    // задание 3.2
+    function getRandomInRange(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    function getRandomProduct() {
+        let products = [
+            {prodName: "коктейль Виноградный напиток", prodPrice: 234, prodIngredient: "вино, шампанское"},
+            {prodName: "коктейль Адмирал", prodPrice: 423, prodIngredient: "вермут, виски"},
+            {prodName: "коктейль Апельсиновое цветение", prodPrice: 455, prodIngredient: "джин"},
+            {prodName: "коктейль Веселый еж", prodPrice: 774, prodIngredient: "вермут, виски"},
+            {prodName: "коктейль Апельсиновый делайт", prodPrice: 765, prodIngredient: "водка, ликер"},
+            {prodName: "коктейль Барьерный риф", prodPrice: 774, prodIngredient: "джин, ликер"},
+            {prodName: "коктейль БИ И СИ", prodPrice: 231, prodIngredient: "кальвадос, ликер"},
+            {prodName: "коктейль Александр Невский", prodPrice: 776, prodIngredient: "водка, ликер"},
+            {prodName: "коктейль Водка 7", prodPrice: 986, prodIngredient: "водка"},
+            {prodName: "коктейль Вандербильта", prodPrice: 235, prodIngredient: "бренди, ликер, биттер"},
+            {prodName: "коктейль Биоплазма", prodPrice: 644, prodIngredient: "абсент, вино"},
+            {prodName: "коктейль Бункер", prodPrice: 300, prodIngredient: "виски"},
+            {prodName: "коктейль Ананасовый гудок", prodPrice: 455, prodIngredient: "джин, ликер"},
+            {prodName: "коктейль Апельсиновая водка", prodPrice: 877, prodIngredient: "водка, ликер"},
+            {prodName: "коктейль Брыкливая лошадь", prodPrice: 231, prodIngredient: "кальвадос, ром, вермут"},
+            {prodName: "коктейль Белый груз", prodPrice: 765, prodIngredient: "джин"},
+        ];
+        return products[getRandomInRange(0, products.length - 1)];
+    }
+
+    function countBasketPrice(prodList) {
+        let totalCost = 0;
+        prodList.forEach(function (item) {
+            totalCost += item.prodPrice;
+        });
+        return totalCost;
+    }
+
+    function fillBasket(numProd) {
+        let prodBasket = [];
+        for (let i = 0; i < numProd; i++) {
+            prodBasket[i] = getRandomProduct();
+        }
+        return prodBasket;
+    }
+
+    function showBasket(prodBasket) {
+        prodBasket.forEach(function (item, indexItem) {
+            console.log(`Товар № ${indexItem + 1} Название: ${item.prodName}\n Ингредиенты: ${item.prodIngredient}\n Цена: ${item.prodPrice} \n \n`);
+        });
+        return console.log(`Сумма вашей покупки: ${countBasketPrice(prodBasket)}`);
+    }
+    let prodCount =Number(prompt('Введите колличество товаров которое хотели бы приобрести', ''));
+    while (isNaN(prodCount)){
+        prodCount = Number(prompt('Вы не верно ввели колличество, повторите попытку (пример : "3")', ''));
+    }
+    showBasket(fillBasket(prodCount));
+
+    // задание 3.3
+    for (let i = 0; i <= 9; console.log(i), i++) {}
+
+    // задание 3.4
+    let star = '';
+    for (let i = 0; i < 20; i++) {
+        console.log(star += '*');
+    }
+
+
+</script>
+</body>
+</html>
